@@ -7,6 +7,9 @@ One look for every script on the server. `lxr-nui` ships the **LXR UI Kit**
 progress bars through exports, so any developer — LXR or third-party — can
 build on the same design without copying files.
 
+![Toasts, a menu and a progress bar from the kit](docs/img/kit.png)
+
+
 ## Use the kit from your own NUI
 
 ```html
