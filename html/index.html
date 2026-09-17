@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- LXR-NUI — toasts · menus · inputs · progress | LXR UI Kit | © 2026 iBoss21 / LXRCore -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>LXR NUI</title>
+  <link rel="stylesheet" href="lxr-ui.css">
+  <style>
+    .lxr #toasts { position: fixed; display: flex; flex-direction: column; gap: var(--lxr-s2); width: 360px; }
+    .lxr #toasts.top-right { top: var(--lxr-s6); right: var(--lxr-s6); } .lxr #toasts.top-left { top: var(--lxr-s6); left: var(--lxr-s6); }
+    .lxr #toasts.bottom-right { bottom: var(--lxr-s6); right: var(--lxr-s6); } .lxr #toasts.bottom-left { bottom: var(--lxr-s6); left: var(--lxr-s6); }
+    .lxr #toasts.top-center { top: var(--lxr-s6); left: 50%; transform: translateX(-50%); } .lxr #toasts.bottom-center { bottom: var(--lxr-s8); left: 50%; transform: translateX(-50%); }
+    .lxr .lxr-toast { transition: opacity var(--lxr-mid) var(--lxr-ease), transform var(--lxr-mid) var(--lxr-ease); }
+    .lxr .lxr-toast.out { opacity: 0; transform: translateY(-6px); }
+    .lxr .lxr-toast .t { color: var(--lxr-bone); font-family: var(--lxr-font-plain); font-size: var(--lxr-text-body); }
+    .lxr .lxr-toast .d { color: var(--lxr-ash); font-size: var(--lxr-text-sm); margin-top: 2px; }
+    .lxr #menu { position: fixed; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; max-height: 84vh; }
+    .lxr #menu.left { left: var(--lxr-s8); } .lxr #menu.right { right: var(--lxr-s8); } .lxr #menu.center { left: 50%; transform: translate(-50%, -50%); }
+    .lxr .nui-head { display: flex; align-items: center; gap: var(--lxr-s4); padding: var(--lxr-s5) var(--lxr-s6); }
+    .lxr .nui-logo { width: 36px; height: 36px; object-fit: contain; background: var(--lxr-void); border: var(--lxr-hairline) solid var(--lxr-edge); padding: 3px; }
+    .lxr .nui-title { font-size: 26px; color: var(--lxr-bone); }
+    .lxr .nui-rows { overflow-y: auto; padding: 0 var(--lxr-s4) var(--lxr-s4); }
+    .lxr .nui-rows .lxr-row { width: 100%; text-align: left; }
+    .lxr .nui-foot { display: flex; justify-content: space-between; padding: var(--lxr-s3) var(--lxr-s6); }
+    .lxr .nui-fields { display: flex; flex-direction: column; gap: var(--lxr-s3); padding: 0 var(--lxr-s6) var(--lxr-s5); }
+    .lxr .nui-fields label { display: flex; flex-direction: column; gap: var(--lxr-s1); }
+    .lxr .nui-fields .lxr-input { width: 100%; }
+    .lxr .nui-actions { display: flex; gap: var(--lxr-s2); padding: 0 var(--lxr-s6) var(--lxr-s6); }
+    .lxr #progress { position: fixed; width: 420px; padding: var(--lxr-s4) var(--lxr-s5); }
+    .lxr #progress.bottom-center { bottom: 12vh; left: 50%; transform: translateX(-50%); }
+    .lxr #progress .lxr-meter { margin-top: var(--lxr-s2); }
+    .lxr #progress .lxr-meter-fill { transition: width linear; }
+  </style>
+</head>
+<body class="lxr">
+  <div id="toasts" class="top-right"></div>
+  <aside id="menu" class="lxr-panel lxr-hit left lxr-hidden"></aside>
+  <div id="progress" class="lxr-panel bottom-center lxr-hidden">
+    <div class="lxr-between"><span class="lxr-mono lxr-t-ash" id="progress-label"></span><span class="lxr-mono lxr-t-ash" id="progress-hint"></span></div>
+    <div class="lxr-meter"><div class="lxr-meter-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <script src="lxr-nui.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
