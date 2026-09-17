@@ -5,6 +5,9 @@
 
 Config = Config or {}
 
+-- Language for the provider page's own labels (Confirm / Cancel / hints): any bundle in locales/ ('en', 'ka').
+Config.Lang = 'en'
+
 Config.Toast = {
     position    = 'top-right',  -- 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
     durationMs  = 4000,

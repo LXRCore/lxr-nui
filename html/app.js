@@ -4,6 +4,8 @@
   const $ = (id) => document.getElementById(id);
   const post = (name, body) => fetch(`https://${typeof GetParentResourceName === 'function' ? GetParentResourceName() : 'lxr-nui'}/${name}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}) }).catch(() => {});
   let current = null; // { id, kind, closeOnSelect }
+  let L = {};
+  const t = (k, vars) => { let s = L['ui.' + k] || k; if (vars) for (const v in vars) s = s.replace('%{' + v + '}', vars[v]); return s; };
 
   function showMenu(p) {
     const m = $('menu');
@@ -11,7 +13,7 @@
     m.style.width = (p.width || 460) + 'px';
     m.innerHTML = `<header class="nui-head lxr-rule-b"><img class="nui-logo" src="img/lxrcore-logo.png" alt=""><div>${p.subtitle ? `<div class="lxr-mono lxr-t-ash">${esc(p.subtitle)}</div>` : ''}<div class="lxr-cut nui-title">${esc(p.title || '')}</div></div></header>
       <div class="nui-rows"></div>
-      <footer class="nui-foot lxr-rule"><span class="lxr-mono lxr-t-ash"><span class="lxr-key">Esc</span> close</span><span class="lxr-mono lxr-t-ash">${(p.rows || []).length} items</span></footer>`;
+      <footer class="nui-foot lxr-rule"><span class="lxr-mono lxr-t-ash"><span class="lxr-key">${esc(t('esc'))}</span> ${esc(t('close'))}</span><span class="lxr-mono lxr-t-ash">${esc(t('items', { n: (p.rows || []).length }))}</span></footer>`;
     const host = m.querySelector('.nui-rows');
     (p.rows || []).forEach((r, i) => host.appendChild(row({
       index: i + 1, name: r.name, sub: r.sub, ka: r.ka, meta: r.meta, price: r.price, badge: r.badge, locked: r.disabled, active: r.active, compact: p.compact,
@@ -32,7 +34,7 @@
     }).join('');
     m.innerHTML = `<header class="nui-head lxr-rule-b"><img class="nui-logo" src="img/lxrcore-logo.png" alt=""><div>${p.subtitle ? `<div class="lxr-mono lxr-t-ash">${esc(p.subtitle)}</div>` : ''}<div class="lxr-cut nui-title">${esc(p.title || '')}</div></div></header>
       <div class="nui-fields">${fields}</div>
-      <div class="nui-actions"><button class="lxr-btn" id="nui-submit">${esc(p.submit || 'Confirm')}</button><button class="lxr-btn-ghost" id="nui-cancel">${esc(p.cancel || 'Cancel')}</button></div>`;
+      <div class="nui-actions"><button class="lxr-btn" id="nui-submit">${esc(p.submit || t('confirm'))}</button><button class="lxr-btn-ghost" id="nui-cancel">${esc(p.cancel || t('cancel'))}</button></div>`;
     $('nui-submit').onclick = () => {
       const values = {};
       (p.fields || []).forEach(f => { const el = $('f-' + f.id); values[f.id] = f.type === 'number' ? Number(el.value) : el.value; });
@@ -51,7 +53,7 @@
     const box = $('progress');
     box.className = 'lxr-panel ' + (p.position || 'bottom-center');
     $('progress-label').textContent = p.label || '';
-    $('progress-hint').textContent = p.canCancel ? 'X — cancel' : '';
+    $('progress-hint').textContent = p.canCancel ? t('cancel_hint') : '';
     const fill = $('progress-fill');
     fill.style.transition = 'none'; fill.style.width = '0%';
     box.classList.remove('lxr-hidden');
@@ -62,6 +64,7 @@
 
   window.addEventListener('message', (e) => {
     const { action, payload } = e.data || {};
+    if (e.data && e.data.locale) { L = e.data.locale; document.body.classList.toggle('lang-ka', e.data.lang === 'ka'); }
     if (action === 'toast') { const host = $('toasts'); host.className = payload.position || 'top-right'; while (host.children.length >= (payload.max || 5)) host.firstChild.remove(); toast(host, payload); }
     else if (action === 'menu') showMenu(payload);
     else if (action === 'input') showInput(payload);

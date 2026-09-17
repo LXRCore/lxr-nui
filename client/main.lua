@@ -17,7 +17,7 @@ local pending = {}   -- request id → callback
 local nextId = 0
 local progress = nil
 
-local function send(action, payload) SendNUIMessage({ action = action, payload = payload }) end
+local function send(action, payload) SendNUIMessage({ action = action, payload = payload, locale = Lang.bundle(), lang = Config.Lang }) end
 local function setFocus(on)
     if focus == on then return end
     focus = on

@@ -35,7 +35,11 @@ description 'LXRCore v3 interface kit: shared stylesheet + fonts, toasts, menus,
 version '1.0.0'
 repository 'https://github.com/LXRCore/lxr-nui'
 
-shared_script 'config.lua'
+shared_scripts {
+    'shared/locale.lua',
+    'locales/*.lua',
+    'config.lua',
+}
 client_script 'client/main.lua'
 server_script 'server/main.lua'
 
