@@ -17,7 +17,12 @@ local pending = {}   -- request id → callback
 local nextId = 0
 local progress = nil
 
-local function send(action, payload) SendNUIMessage({ action = action, payload = payload, locale = Lang.bundle(), lang = Config.Lang }) end
+local function theme()
+    if Config.Theme and Config.Theme ~= 'auto' then return Config.Theme end
+    if GetResourceState('lxr-core') == 'started' then local ok, b = pcall(function() return exports['lxr-core']:GetCoreObject().Brand.theme end) if ok and b then return b end end
+    return 'night'
+end
+local function send(action, payload) SendNUIMessage({ action = action, payload = payload, locale = Lang.bundle(), lang = Config.Lang, theme = theme() }) end
 local function setFocus(on)
     if focus == on then return end
     focus = on
