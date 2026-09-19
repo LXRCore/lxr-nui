@@ -67,7 +67,7 @@
     if (m.theme || (m.brand && m.brand.theme) || (m.server && m.server.theme)) document.documentElement.dataset.theme = m.theme || (m.brand && m.brand.theme) || (m.server && m.server.theme);
     const { action, payload } = e.data || {};
     if (e.data && e.data.locale) { L = e.data.locale; document.body.classList.toggle('lang-ka', e.data.lang === 'ka'); }
-    if (action === 'toast') { const host = $('toasts'); host.className = payload.position || 'top-right'; while (host.children.length >= (payload.max || 5)) host.firstChild.remove(); toast(host, payload); }
+    if (action === 'toast') { const host = $('toasts'); host.className = payload.position || 'top-right'; host.style.top = (host.className.startsWith('top') && payload.offsetTop) ? payload.offsetTop + 'px' : ''; while (host.children.length >= (payload.max || 5)) host.firstChild.remove(); toast(host, payload); }
     else if (action === 'menu') showMenu(payload);
     else if (action === 'input') showInput(payload);
     else if (action === 'progress') showProgress(payload);

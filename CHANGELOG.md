@@ -1,6 +1,7 @@
 # Changelog — lxr-nui
 
 ## 3.0.0 — 2026-09-19
+* Toasts sit under lxr-hud's top-right block (`Config.Toast.offsetTop`, 180 px) instead of over the name and cash.
 * LXRCore v3 release line: every resource ships as 3.0.0 from here (the entries below are the road to it).
 
 ## 1.0.1 — 2026-09-19

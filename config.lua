@@ -13,6 +13,7 @@ Config.Theme = 'auto'
 
 Config.Toast = {
     position    = 'top-right',  -- 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
+    offsetTop   = 180,          -- px from the top for the top-* positions: under lxr-hud's date / name / cash block
     durationMs  = 4000,
     maxVisible  = 5,
     sound       = true,         -- short UI sound on toast (native frontend sound)

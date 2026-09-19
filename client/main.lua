@@ -47,7 +47,7 @@ local function toast(opts)
     opts.type = ({ success = 'ok', ok = 'ok', error = 'bad', bad = 'bad', warning = 'warn', warn = 'warn' })[tostring(opts.type or 'inform')] or 'inform'
     opts.duration = tonumber(opts.duration) or Config.Toast.durationMs
     if not opts.title or opts.title == '' then if opts.description and opts.description ~= '' then opts.title, opts.description = opts.description, nil else return end end   -- nothing to say: no empty black bar
-    send('toast', { title = opts.title, description = opts.description, type = opts.type, duration = opts.duration, position = Config.Toast.position, max = Config.Toast.maxVisible })
+    send('toast', { title = opts.title, description = opts.description, type = opts.type, duration = opts.duration, position = Config.Toast.position, offsetTop = Config.Toast.offsetTop, max = Config.Toast.maxVisible })
     if Config.Toast.sound then PlaySoundFrontend('NAV_UP', 'HUD_SHOP_SOUNDSET', true, 0) end
 end
 exports('Toast', toast)
