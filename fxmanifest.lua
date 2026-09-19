@@ -32,7 +32,7 @@ lua54 'yes'
 name 'lxr-nui'
 author 'iBoss21 / LXRCore'
 description 'LXRCore v3 interface kit: shared stylesheet + fonts, toasts, menus, inputs, progress bars'
-version '1.0.0'
+version '1.0.1'
 repository 'https://github.com/LXRCore/lxr-nui'
 
 shared_scripts {
