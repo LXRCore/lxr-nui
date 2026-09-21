@@ -50,6 +50,7 @@ files {
     'html/lxr-ui.css',
     'html/lxr-nui.js',
     'html/app.js',
+    'html/icons.js',   -- the LXR icon library (tools/icons/build.py)
     'html/fonts/*.woff2',
     'html/img/*.png',
 }
